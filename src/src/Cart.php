@@ -5,7 +5,7 @@ namespace TestWork;
 
 
 use TestWork\discount\OrderItem;
-use TestWork\product\Product;
+use TestWork\product\ProductInterface;
 
 class Cart
 {
@@ -23,7 +23,7 @@ class Cart
         return $this->cart;
     }
 
-    public function addProduct(Product $product): void
+    public function addProduct(ProductInterface $product): void
     {
         $this->cart[] = new OrderItem($product);
     }

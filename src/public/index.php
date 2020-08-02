@@ -26,7 +26,6 @@ $productK = new Product('K', 100);
 $productL = new Product('L', 100);
 $productM = new Product('M', 100);
 
-//echo "<pre>" . print_r($productA, true) . "</pre>";
 
 
 $discountManager = new DiscountManager();

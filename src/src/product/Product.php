@@ -2,7 +2,6 @@
 
 namespace TestWork\product;
 
-
 class Product implements ProductInterface
 {
     protected string $id;

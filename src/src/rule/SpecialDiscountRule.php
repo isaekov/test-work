@@ -1,8 +1,6 @@
 <?php
 
-
 namespace TestWork\rule;
-
 
 use TestWork\Cart;
 use TestWork\discount\DiscountResult;

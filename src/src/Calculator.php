@@ -1,6 +1,5 @@
 <?php
 
-
 namespace TestWork;
 
 use TestWork\discount\DiscountManager;

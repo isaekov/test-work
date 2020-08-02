@@ -1,6 +1,5 @@
 <?php
 
-
 namespace TestWork\discount;
 
 use TestWork\Cart;

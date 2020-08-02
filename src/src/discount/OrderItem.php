@@ -1,8 +1,6 @@
 <?php
 
-
 namespace TestWork\discount;
-
 
 use TestWork\product\ProductInterface;
 

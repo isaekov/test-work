@@ -1,8 +1,6 @@
 <?php
 
-
 namespace TestWork;
-
 
 use TestWork\discount\OrderItem;
 use TestWork\product\ProductInterface;

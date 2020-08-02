@@ -5,9 +5,9 @@ use TestWork\Calculator;
 use TestWork\discount\DiscountManager;
 use TestWork\Cart;
 use TestWork\product\Product;
-use TestWork\rule\ConcreteDiscount;
-use TestWork\rule\ConcreteProductWithDiscount;
-use TestWork\rule\OrderCountDiscount;
+use TestWork\rule\DiscountRule;
+use TestWork\rule\SpecialDiscountRule;
+use TestWork\rule\CountDiscountRule;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -29,32 +29,28 @@ $productM = new Product('M', 100);
 
 
 $discountManager = new DiscountManager();
-$discountManager->add(new ConcreteDiscount([$productA, $productB], 0.1));
-$discountManager->add(new ConcreteDiscount([$productD, $productE], 0.05));
-$discountManager->add(new ConcreteDiscount([$productE, $productF, $productM], 0.05));
-$discountManager->add(new ConcreteProductWithDiscount($productA, [$productK, $productL, $productM], 0.05));
-$discountManager->add(new OrderCountDiscount(3, [$productA, $productC], 0.05));
-$discountManager->add(new OrderCountDiscount(4, [$productA, $productC], 0.1));
-$discountManager->add(new OrderCountDiscount(5, [$productA, $productC], 0.2));
-
-
-
+$discountManager->add(new DiscountRule([$productA, $productB], 0.1));
+$discountManager->add(new DiscountRule([$productD, $productE], 0.05));
+$discountManager->add(new DiscountRule([$productE, $productF, $productM], 0.05));
+$discountManager->add(new SpecialDiscountRule($productA, [$productK, $productL, $productM], 0.05));
+$discountManager->add(new CountDiscountRule(3, [$productA, $productC], 0.05));
+$discountManager->add(new CountDiscountRule(4, [$productA, $productC], 0.1));
+$discountManager->add(new CountDiscountRule(5, [$productA, $productC], 0.2));
 
 $calculator = new Calculator();
 $calculator->setDiscountManager($discountManager);
 
 
-$order = new Cart();
-$order->add($productA);
-$order->add($productA);
-$order->add($productD);
-$order->add($productE);
-$order->add($productB);
-$order->add($productA);
-$order->add($productD);
-$order->add($productD);
+$cart = new Cart();
+$cart->addProduct($productA);
+$cart->addProduct($productD);
+$cart->addProduct($productE);
+$cart->addProduct($productB);
+$cart->addProduct($productA);
+$cart->addProduct($productD);
+$cart->addProduct($productD);
 
-$calculator->setOrder($order);
+$calculator->setOrder($cart);
 $res = $calculator->calculate();
 
 echo  $res;

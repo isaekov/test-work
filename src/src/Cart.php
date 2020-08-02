@@ -13,22 +13,22 @@ class Cart
     /**
      * @var OrderItem[]
      */
-    protected iterable $cart;
+    protected array $cart;
 
     /**
      * @return OrderItem[]
      */
-    public function getCart() : iterable
+    public function getCart(): array
     {
         return $this->cart;
     }
 
-    public function add(Product $product) : void
+    public function addProduct(Product $product): void
     {
         $this->cart[] = new OrderItem($product);
     }
 
-    public function sum() : int
+    public function sum(): int
     {
         $sum = 0;
         foreach ($this->cart as $product) {

@@ -1,9 +1,7 @@
 {
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
-      "TestWork\\": "src/",
-      "Entity\\": "data/"
+      "TestWork\\": "src/"
     }
   }
 }

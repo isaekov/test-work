@@ -6,17 +6,18 @@ namespace TestWork\rule;
 
 use TestWork\discount\DiscountResult;
 use TestWork\Cart;
+use TestWork\product\ProductInterface;
 use TestWork\rule\base\AbstractDiscount;
 
-class ConcreteDiscount extends AbstractDiscount
+class DiscountRule extends AbstractDiscount
 {
     /**
-     * @var array|iterable
+     * @var ProductInterface[]
      */
-    protected iterable $productSet;
+    protected array $productSet;
 
     /**
-     * ConcreteDiscount constructor.
+     * DiscountRule constructor.
      * @param array $productSet
      * @param float $discount
      */
@@ -30,7 +31,7 @@ class ConcreteDiscount extends AbstractDiscount
      * @param Cart $order
      * @return array
      */
-    public function calculate(Cart $order) : array
+    public function calculate(Cart $order): array
     {
         $results = [];
         do {
@@ -53,14 +54,14 @@ class ConcreteDiscount extends AbstractDiscount
         $products = [];
         $productSet = $order->getCart();
         foreach ($this->productSet as $product) {
-            $k = $this->findProduct($product, $productSet);
-            if ($k === false) {
+            $keyPosition = $this->findProduct($product, $productSet);
+            if ($keyPosition === false) {
                 return false;
             }
-            $productSet[$k]->setUsedDiscount(true);
-            $productsSum += $productSet[$k]->getProduct()->getPrice();
-            $products[] = $productSet[$k];
-            unset($productSet[$k]);
+            $productSet[$keyPosition]->setUsedDiscount(true);
+            $productsSum += $productSet[$keyPosition]->getProduct()->getPrice();
+            $products[] = $productSet[$keyPosition];
+            unset($productSet[$keyPosition]);
         }
         $qty = $productsSum * $this->discount;
         return new DiscountResult($this, $products, $qty);

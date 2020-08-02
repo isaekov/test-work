@@ -3,21 +3,28 @@
 
 namespace TestWork\discount;
 
-
 use TestWork\Cart;
 use TestWork\rule\base\AbstractDiscount;
 
 class DiscountManager
 {
 
-    protected iterable $discounts;
+    /**
+     * @var AbstractDiscount[]
+     */
+    protected array $discounts;
 
-    public function add(AbstractDiscount $discount)
+    public function add(AbstractDiscount $discount): void
     {
         $this->discounts[] = $discount;
     }
 
-    public function getPossibleDiscounts(Cart $order)
+
+    /**
+     * @param Cart $order
+     * @return DiscountResult[]
+     */
+    public function getPossibleDiscounts(Cart $order): array
     {
         $discounts = [];
         foreach ($this->discounts as $discount) {

@@ -15,12 +15,12 @@ class Product implements ProductInterface
         $this->price = $price;
     }
 
-    public function getPrice() : float
+    public function getPrice(): float
     {
         return $this->price;
     }
 
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }

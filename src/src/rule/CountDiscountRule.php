@@ -1,15 +1,13 @@
 <?php
 
-
 namespace TestWork\rule;
-
 
 use TestWork\discount\DiscountResult;
 use TestWork\Cart;
 use TestWork\discount\OrderItem;
 use TestWork\rule\base\AbstractDiscount;
 
-class OrderCountDiscount extends AbstractDiscount
+class CountDiscountRule extends AbstractDiscount
 {
     /**
      * @var int
@@ -19,7 +17,7 @@ class OrderCountDiscount extends AbstractDiscount
     /**
      * @var array
      */
-    protected iterable $excludeProductSet;
+    protected array $excludeProductSet;
 
     /**
      * @param $count
@@ -33,7 +31,11 @@ class OrderCountDiscount extends AbstractDiscount
         $this->excludeProductSet = $excludeProductSet;
     }
 
-    public function calculate(Cart $order) : array
+    /**
+     * @param Cart $order
+     * @return array|DiscountResult[]
+     */
+    public function calculate(Cart $order): array
     {
         $count = 0;
         foreach ($order->getCart() as $item) {
@@ -48,7 +50,7 @@ class OrderCountDiscount extends AbstractDiscount
         return [];
     }
 
-    protected function isItemExcluded(OrderItem $item) : bool
+    protected function isItemExcluded(OrderItem $item): bool
     {
         foreach ($this->excludeProductSet as $exclude) {
             if ($item->equalTo($exclude)) {

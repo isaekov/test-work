@@ -19,33 +19,25 @@ class OrderItem
         $this->usedDiscount = false;
     }
 
-//    public function setProduct($product)
-//    {
-//        $this->product = $product;
-//    }
 
-    public function getProduct() : ProductInterface
+    public function getProduct(): ProductInterface
     {
         return $this->product;
     }
 
-//    public function getCost()
-//    {
-//        return $this->product->getPrice();
-//    }
 
-    public function setUsedDiscount($usedDiscount) : void
+    public function setUsedDiscount($usedDiscount): void
     {
         $this->usedDiscount = $usedDiscount;
     }
 
-    public function getUsedDiscount() : bool
+    public function getUsedDiscount(): bool
     {
         return $this->usedDiscount;
     }
 
-    public function equalTo(ProductInterface $product) : bool
+    public function equalTo(ProductInterface $product): bool
     {
-        return $this->product === $product;
+        return $this->product instanceof $product;
     }
 }

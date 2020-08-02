@@ -5,17 +5,16 @@ namespace TestWork\rule;
 
 
 use TestWork\Cart;
-use TestWork\DiscountResult;
-use TestWork\Product;
+use TestWork\discount\DiscountResult;
 use TestWork\product\ProductInterface;
 use TestWork\rule\base\AbstractDiscount;
 
-class ConcreteProductWithDiscount extends AbstractDiscount
+class SpecialDiscountRule extends AbstractDiscount
 {
 
     protected ProductInterface $product;
 
-    protected iterable $productSet;
+    protected array $productSet;
 
     public function __construct(ProductInterface $product, array $productSet, float $discount)
     {
@@ -24,6 +23,10 @@ class ConcreteProductWithDiscount extends AbstractDiscount
         $this->productSet = $productSet;
     }
 
+    /**
+     * @param Cart $order
+     * @return array|mixed
+     */
     public function calculate(Cart $order)
     {
         $results = [];

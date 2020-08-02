@@ -1,8 +1,6 @@
 <?php
 
-
 namespace TestWork\discount;
-
 
 use TestWork\rule\base\AbstractDiscount;
 
@@ -11,7 +9,7 @@ class DiscountResult
 
     protected AbstractDiscount $discount;
 
-    protected iterable $products;
+    protected array $products;
 
     protected int $discountQty;
 
@@ -22,18 +20,9 @@ class DiscountResult
         $this->discountQty = $discountQty;
     }
 
-    public function getDiscount() : AbstractDiscount
-    {
-        return $this->discount;
-    }
-
     public function getDiscountQty() : int
     {
         return $this->discountQty;
     }
 
-    public function setDiscountQty($discountQty) : void
-    {
-        $this->discountQty = $discountQty;
-    }
 }

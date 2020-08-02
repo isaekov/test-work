@@ -3,7 +3,6 @@
 
 namespace TestWork;
 
-
 use TestWork\discount\DiscountManager;
 
 class Calculator
@@ -12,7 +11,8 @@ class Calculator
     protected Cart $order;
 
     protected DiscountManager $discountManager;
-    public function setOrder(Cart $order)
+
+    public function setOrder(Cart $order) : void
     {
         $this->order = $order;
     }

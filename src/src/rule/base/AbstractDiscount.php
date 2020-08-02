@@ -18,6 +18,10 @@ abstract class AbstractDiscount
         $this->discount = $discount;
     }
 
+    /**
+     * @param Cart $order
+     * @return mixed
+     */
     abstract public function calculate(Cart $order);
 
     /**
@@ -25,7 +29,7 @@ abstract class AbstractDiscount
      * @param OrderItem[] $list
      * @return bool|int|string
      */
-    protected function findProduct(ProductInterface $product, array &$list)
+    protected function findProduct(ProductInterface $product, array $list)
     {
         foreach ($list as $key => $item) {
             if ($item->equalTo($product) && !$item->getUsedDiscount()) {
@@ -34,10 +38,5 @@ abstract class AbstractDiscount
         }
         return false;
     }
-
-//    public function getDiscount()
-//    {
-//        return $this->discount;
-//    }
 
 }
